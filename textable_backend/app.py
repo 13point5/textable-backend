@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -25,9 +26,7 @@ instructor_client = instructor.from_openai(OpenAI())
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:5173",
-]
+origins = ["http://localhost:5173", "https://textable.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -44,7 +43,9 @@ def read_root():
 
 
 system_prompt = SystemMessagePromptTemplate(
-    prompt=load_prompt("prompts/system_prompt.yaml")
+    prompt=load_prompt(
+        os.path.join(os.path.dirname(__file__), "prompts/system_prompt.yaml")
+    )
 )
 
 
