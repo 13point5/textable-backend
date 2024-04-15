@@ -70,6 +70,9 @@ class Feedback(BaseModel):
         ...,
         description="The corrected version of what the user tried to say so that they can learn.",
     )
+    perfect: bool = Field(
+        ..., description="Whether the user's response was perfect or not."
+    )
 
 
 class ChatRequest(BaseModel):
