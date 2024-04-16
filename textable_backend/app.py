@@ -42,6 +42,18 @@ def read_root():
     return {"Hello": "World"}
 
 
+class AuthRequest(BaseModel):
+    password: str
+
+
+@app.post("/auth")
+def check_auth(body: AuthRequest):
+    if body.password == os.getenv("PASSWORD"):
+        return {"status": "success"}
+    else:
+        return {"status": "error", "message": "Incorrect password."}
+
+
 system_prompt = SystemMessagePromptTemplate(
     prompt=load_prompt(
         os.path.join(os.path.dirname(__file__), "prompts/system_prompt.yaml")
