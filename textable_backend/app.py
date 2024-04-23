@@ -122,7 +122,7 @@ def format_message_content(content: MessageContent):
     formatted_content = [{"type": "text", "text": content.text}]
 
     for img in content.images:
-        formatted_content.append({"type": "image_url", "image_url": img})
+        formatted_content.append({"type": "image_url", "image_url": {"url": img}})
 
     return formatted_content
 
