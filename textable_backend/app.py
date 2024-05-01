@@ -143,8 +143,7 @@ def chat(body: ChatRequest):
         )
 
     bot_response = openai_client.chat.completions.create(
-        model="gpt-4-turbo",
-        messages=messages,
+        model="gpt-4-turbo", messages=messages, max_tokens=200
     )
 
     last_human_message = next(
